@@ -3,36 +3,80 @@ from gpiozero.pins.mock import MockPin
 from raspberry_p0.component.seven_segments_display import SevenSegmentsDisplay
 from raspberry_p0.component.patch_component import PatchComponent
 
+import json
+from configparser import ConfigParser
 
 class Configurations(object):
     """
     Configure the pins based in BCM pinout number.
     See https://pinout.xyz/ for help
     """
-    display = None
-    next_patch_button = None
-    before_patch_button = None
 
-    def __init__(self, test=False):
-        if test:
-            self.test()
-        else:
-            self.configure()
+    def __init__(self, configuration_file):
+        self.display = None
+        self.next_patch_button = None
+        self.before_patch_button = None
 
-    def configure(self):
-        self.display = SevenSegmentsDisplay(a=13, b=6, c=16, d=20, e=21, f=19, g=26, dp=0, common_unit=5, common_tens=1)
+        config = self._parse_configuration(configuration_file)
+        config = self._prepare_pins(config)
+        self.configure(config)
 
-        self.next_patch_button = PatchComponent(14)
-        self.before_patch_button = PatchComponent(15)
+    def _parse_configuration(self, configuration_file):
+        config_parser = ConfigParser()
+        config_parser.read(configuration_file)
 
-    def test(self):
+        data = config_parser['DEFAULT']
+
+        keys = data.keys()
+
+        config = dict()
+        config['test'] = config_parser['test']['test'] == 'True'
+
+        config['display'] = dict()
+        pin_keys = filter(lambda key: key.startswith('pin_'), keys)
+        for key in pin_keys:
+            config['display'][key] = int(data[key])
+
+        config['display_common'] = json.loads(data['common_pins'])
+
+        config['next_patch'] = int(data['next_patch'])
+        config['before_patch'] = int(data['before_patch'])
+
+        return config
+
+    def _prepare_pins(self, config):
+        test = config['test']
+        print(test)
+        if not test:
+            return config
+
+        for key, value in config['display'].items():
+            config['display'][key] = MockPin(value)
+
+        new_common = []
+        for common in config['display_common']:
+            new_common.append(MockPin(common))
+
+        config['display_common'] = new_common
+
+        config['next_patch'] = MockPin(config['next_patch'])
+        config['before_patch'] = MockPin(config['before_patch'])
+
+        return config
+
+    def configure(self, config):
+        display_pins = config['display']
         self.display = SevenSegmentsDisplay(
-            a=MockPin(13), b=MockPin(6), c=MockPin(16),
-            d=MockPin(20), e=MockPin(21), f=MockPin(19),
-            g=MockPin(26), dp=MockPin(0),
-            common_unit=MockPin(5),
-            common_tens=MockPin(1)
+            a=display_pins['pin_a'],
+            b=display_pins['pin_b'],
+            c=display_pins['pin_c'],
+            d=display_pins['pin_d'],
+            e=display_pins['pin_e'],
+            f=display_pins['pin_f'],
+            g=display_pins['pin_g'],
+            dp=display_pins['pin_dp'],
+            common=config['display_common'],
         )
 
-        self.next_patch_button = PatchComponent(MockPin(15))
-        self.before_patch_button = PatchComponent(MockPin(18))
+        self.next_patch_button = PatchComponent(config['next_patch'])
+        self.before_patch_button = PatchComponent(config['before_patch'])

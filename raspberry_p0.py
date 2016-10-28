@@ -13,13 +13,16 @@ class RaspberryP0(Component):
     """
     Change the current patch with next and before patch
     buttons and view the current patch by SevenSegmentsDisplay
+
+    :param Application application: Class application
+    :param string configuration_file: Change the number pins. View raspberry_p0/config.ini for example
     """
 
-    def __init__(self, application, test=False):
+    def __init__(self, application, configuration_file="raspberry_p0/config.ini"):
         super(RaspberryP0, self).__init__(application)
 
         self.app = application
-        self.config = Configurations(test=test)
+        self.config = Configurations(configuration_file)
 
         self.components = self.init_components(self.config)
         self.observer = UpdatesObserverPhysical()
