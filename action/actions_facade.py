@@ -1,6 +1,5 @@
 from application.controller.CurrentController import CurrentController
 from application.controller.EffectController import EffectController
-from application.controller.NotificationController import NotificationController
 
 
 class ActionsFacade(object):

@@ -1,8 +1,8 @@
 from application.model.UpdatesObserver import UpdatesObserver
-from physical.controller.pedal_zero_controller.action.actions_facade import ActionsFacade
+from raspberry_p0.action.actions_facade import ActionsFacade
 
 
-class UpdatesObserverPhysical(UpdatesObserver):
+class UpdatesObserverP0(UpdatesObserver):
 
     def __init__(self):
         super().__init__()

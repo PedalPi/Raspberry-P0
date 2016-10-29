@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from application.architecture.Component import Component
 
-from physical.controller.pedal_zero_controller.action.actions_facade import ActionsFacade
-from physical.mvc.updates_observer_physical import UpdatesObserverPhysical
+from raspberry_p0.mvc.updates_observer_p0 import UpdatesObserverP0
 
+from raspberry_p0.action.actions_facade import ActionsFacade
 from raspberry_p0.configurations import Configurations
 from raspberry_p0.component.components import Components
 from raspberry_p0.mvc.patches.patches_controller import PatchesController
@@ -25,7 +25,7 @@ class RaspberryP0(Component):
         self.config = Configurations(configuration_file)
 
         self.components = self.init_components(self.config)
-        self.observer = UpdatesObserverPhysical()
+        self.observer = UpdatesObserverP0()
         self.register_observer(self.observer)
 
         self.actions = ActionsFacade(application)
