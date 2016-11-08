@@ -3,7 +3,7 @@ from application.controller.EffectController import EffectController
 
 
 class ActionsFacade(object):
-    TOKEN = 'physical-action-facade-token'
+    TOKEN = 'raspberry-p0-token'
 
     def __init__(self, application):
         self.app = application

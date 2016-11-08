@@ -46,7 +46,7 @@ class Configurations(object):
 
     def _prepare_pins(self, config):
         test = config['test']
-        print(test)
+
         if not test:
             return config
 
