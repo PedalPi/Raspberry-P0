@@ -39,8 +39,8 @@ class Configurations(object):
 
         config['display_common'] = json.loads(data['common_pins'])
 
-        config['next_patch'] = int(data['next_patch'])
-        config['before_patch'] = int(data['before_patch'])
+        config['next_pedalboard'] = int(data['next_pedalboard'])
+        config['before_pedalboard'] = int(data['before_pedalboard'])
 
         return config
 
@@ -59,8 +59,8 @@ class Configurations(object):
 
         config['display_common'] = new_common
 
-        config['next_patch'] = MockPin(config['next_patch'])
-        config['before_patch'] = MockPin(config['before_patch'])
+        config['next_pedalboard'] = MockPin(config['next_pedalboard'])
+        config['before_pedalboard'] = MockPin(config['before_pedalboard'])
 
         return config
 
@@ -78,5 +78,5 @@ class Configurations(object):
             common=config['display_common'],
         )
 
-        self.next_patch_button = PatchComponent(config['next_patch'])
-        self.before_patch_button = PatchComponent(config['before_patch'])
+        self.next_patch_button = PatchComponent(config['next_pedalboard'])
+        self.before_patch_button = PatchComponent(config['before_pedalboard'])

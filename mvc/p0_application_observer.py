@@ -1,8 +1,8 @@
-from pluginsmanager.model.updates_observer import UpdatesObserver
+from application.component.application_observer import ApplicationObserver
 from raspberry_p0.action.actions_facade import ActionsFacade
 
 
-class UpdatesObserverP0(UpdatesObserver):
+class P0ApplicationObserver(ApplicationObserver):
 
     def __init__(self):
         super().__init__()
@@ -11,6 +11,9 @@ class UpdatesObserverP0(UpdatesObserver):
 
     def register(self, controller):
         self.controller = controller
+
+    def on_current_pedalboard_changed(self, pedalboard, token=None):
+        pass
 
     def on_bank_updated(self, bank, update_type, **kwargs):
         self.controller.on_bank_update(bank, update_type)

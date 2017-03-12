@@ -1,6 +1,6 @@
 from application.component.component import Component
 
-from raspberry_p0.mvc.updates_observer_p0 import UpdatesObserverP0
+from raspberry_p0.mvc.p0_application_observer import P0ApplicationObserver
 
 from raspberry_p0.action.actions_facade import ActionsFacade
 from raspberry_p0.configurations import Configurations
@@ -10,7 +10,7 @@ from raspberry_p0.mvc.patches.patches_controller import PatchesController
 
 class RaspberryP0(Component):
     """
-    Change the current patch with next and before patch
+    Change the current pedalboard with next and before pedalboard
     buttons and view the current patch by SevenSegmentsDisplay
 
     :param Application application: Class application
@@ -24,7 +24,7 @@ class RaspberryP0(Component):
         self.config = Configurations(configuration_file)
 
         self.components = self.init_components(self.config)
-        self.observer = UpdatesObserverP0()
+        self.observer = P0ApplicationObserver()
         self.register_observer(self.observer)
 
         self.actions = ActionsFacade(application)
