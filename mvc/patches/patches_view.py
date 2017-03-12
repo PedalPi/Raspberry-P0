@@ -15,8 +15,8 @@ class PatchesView(View):
     def init_components(self, components):
         self.display = components[Components.DISPLAY]
 
-        self.next_patch = components[Components.NEXT_PATCH]
-        self.before_patch = components[Components.BEFORE_PATCH]
+        self.next_patch = components[Components.NEXT_PEDALBOARD]
+        self.before_patch = components[Components.BEFORE_PEDALBOARD]
 
     def init_components_actions(self):
         self.next_patch.action = self.controller.to_next_patch

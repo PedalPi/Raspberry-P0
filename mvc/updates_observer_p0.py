@@ -1,4 +1,4 @@
-from application.model.UpdatesObserver import UpdatesObserver
+from pluginsmanager.model.updates_observer import UpdatesObserver
 from raspberry_p0.action.actions_facade import ActionsFacade
 
 
@@ -12,20 +12,20 @@ class UpdatesObserverP0(UpdatesObserver):
     def register(self, controller):
         self.controller = controller
 
-    def onCurrentPatchChange(self, patch, token=None):
-        self.controller.on_current_patch_change(patch, token)
+    def on_bank_updated(self, bank, update_type, **kwargs):
+        self.controller.on_bank_update(bank, update_type)
 
-    def onBankUpdate(self, bank, update_type, token=None):
-        self.controller.on_bank_update(bank, update_type, token)
+    def on_pedalboard_updated(self, pedalboard, update_type, **kwargs):
+        self.controller.on_pedalboard_updated(pedalboard, update_type, **kwargs)
 
-    def onPatchUpdated(self, patch, update_type, token=None):
-        self.controller.on_patch_updated(patch, update_type, token)
+    def on_effect_updated(self, effect, update_type, **kwargs):
+        self.controller.on_effect_updated(effect, update_type)
 
-    def onEffectUpdated(self, effect, update_type, token=None):
-        self.controller.on_effect_updated(effect, update_type, token)
+    def on_effect_status_toggled(self, effect):
+        self.controller.on_effect_status_toggled(effect)
 
-    def onEffectStatusToggled(self, effect, token=None):
-        self.controller.on_effect_status_toggled(effect, token)
+    def on_param_value_changed(self, param):
+        self.controller.on_param_value_change(param)
 
-    def onParamValueChange(self, param, token=None):
-        self.controller.on_param_value_change(param, token)
+    def on_connection_updated(self, connection, update_type):
+        pass

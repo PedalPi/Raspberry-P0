@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-from application.architecture.Component import Component
+from application.component.component import Component
 
 from raspberry_p0.mvc.updates_observer_p0 import UpdatesObserverP0
 
@@ -19,7 +18,7 @@ class RaspberryP0(Component):
     """
 
     def __init__(self, application, configuration_file="raspberry_p0/config.ini"):
-        super(RaspberryP0, self).__init__(application)
+        super().__init__(application)
 
         self.app = application
         self.config = Configurations(configuration_file)
@@ -41,8 +40,8 @@ class RaspberryP0(Component):
         components = dict()
 
         components[Components.DISPLAY] = configurations.display
-        components[Components.NEXT_PATCH] = configurations.next_patch_button
-        components[Components.BEFORE_PATCH] = configurations.before_patch_button
+        components[Components.NEXT_PEDALBOARD] = configurations.next_patch_button
+        components[Components.BEFORE_PEDALBOARD] = configurations.before_patch_button
 
         return components
 
