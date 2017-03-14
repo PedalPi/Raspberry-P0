@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
 from gpiozero import Button
 
 
-class PatchComponent(object):
-    button = None
+class PedalboardComponent(object):
 
     def __init__(self, pin):
         self.button = Button(pin, pull_up=True)

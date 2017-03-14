@@ -8,8 +8,8 @@ class SevenSegmentsDisplay(object):
         self.board.add_display(common=common[0], anode=False)
         self.board.add_display(common=common[1], anode=True)
 
-    def show_patch(self, patch):
-        if patch is None:
+    def show_pedalboard(self, pedalboard):
+        if pedalboard is None:
             self.board.value = '--'
         else:
-            self.board.value = patch.index
+            self.board.value = pedalboard.index

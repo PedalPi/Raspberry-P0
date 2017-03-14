@@ -9,21 +9,21 @@ class ActionsFacade(object):
         self.app = application
 
     @property
-    def current_patch(self):
+    def current_pedalboard(self):
         controller = self.app.controller(CurrentController)
         return controller.current_pedalboard
 
-    def to_next_patch(self):
+    def to_next_pedalboard(self):
         controller = self.app.controller(CurrentController)
 
-        controller.to_next_patch(ActionsFacade.TOKEN)
-        return controller.current_patch
+        controller.to_next_pedalboard(ActionsFacade.TOKEN)
+        return controller.current_pedalboard
 
-    def to_before_patch(self):
+    def to_before_pedalboard(self):
         controller = self.app.controller(CurrentController)
 
-        controller.to_before_patch(ActionsFacade.TOKEN)
-        return controller.current_patch
+        controller.to_before_pedalboard(ActionsFacade.TOKEN)
+        return controller.current_pedalboard
 
     def toggle_status_effect(self, effect):
         controller = self.app.controller(effect_controller)

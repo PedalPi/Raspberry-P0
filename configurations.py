@@ -1,10 +1,11 @@
 from gpiozero.pins.mock import MockPin
 
 from raspberry_p0.component.seven_segments_display import SevenSegmentsDisplay
-from raspberry_p0.component.patch_component import PatchComponent
+from raspberry_p0.component.pedalboard_component import PedalboardComponent
 
 import json
 from configparser import ConfigParser
+
 
 class Configurations(object):
     """
@@ -14,8 +15,8 @@ class Configurations(object):
 
     def __init__(self, configuration_file):
         self.display = None
-        self.next_patch_button = None
-        self.before_patch_button = None
+        self.next_pedalboard_button = None
+        self.before_pedalboard_button = None
 
         config = self._parse_configuration(configuration_file)
         config = self._prepare_pins(config)
@@ -78,5 +79,5 @@ class Configurations(object):
             common=config['display_common'],
         )
 
-        self.next_patch_button = PatchComponent(config['next_pedalboard'])
-        self.before_patch_button = PatchComponent(config['before_pedalboard'])
+        self.next_pedalboard_button = PedalboardComponent(config['next_pedalboard'])
+        self.before_pedalboard_button = PedalboardComponent(config['before_pedalboard'])
