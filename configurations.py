@@ -50,6 +50,7 @@ class Configurations(object):
         }
 
         config_parser = ConfigParser()
+        config_parser.read('raspberry_p0/config.ini')
         config_parser.read(configuration_file)
 
         return ConfigurationsParser(schema).parse(config_parser)
@@ -58,20 +59,21 @@ class Configurations(object):
         display_pins = config['display']
 
         self.display = SevenSegmentsDisplay(
-            a=display_pins.get('pin_a', 13),
-            b=display_pins.get('pin_b', 6),
-            c=display_pins.get('pin_c', 16),
-            d=display_pins.get('pin_d', 20),
-            e=display_pins.get('pin_e', 21),
-            f=display_pins.get('pin_f', 19),
-            g=display_pins.get('pin_g', 26),
-            dp=display_pins.get('pin_dp', 0),
+            a=display_pins['pin_a'],
+            b=display_pins['pin_b'],
+            c=display_pins['pin_c'],
+            d=display_pins['pin_d'],
+            e=display_pins['pin_e'],
+            f=display_pins['pin_f'],
+            g=display_pins['pin_g'],
+            dp=display_pins['pin_dp'],
 
-            common=config.get('common_pins', [5, 1]),
-            common_anode=config.get('common_anode', True),
+            common=display_pins['common_pins'],
+            common_anode=display_pins['common_anode'],
         )
 
         pedalboard_pins = config['pedalboard']
-        toggle = pedalboard_pins.get('footswitch_toggle', True)
-        self.next_pedalboard_button = PedalboardComponent(pedalboard_pins.get('next_pedalboard', 14), toggle)
-        self.before_pedalboard_button = PedalboardComponent(pedalboard_pins.get('before_pedalboard', 15), toggle)
+        toggle = pedalboard_pins['footswitch_toggle']
+
+        self.next_pedalboard_button = PedalboardComponent(pedalboard_pins['next_pedalboard'], toggle)
+        self.before_pedalboard_button = PedalboardComponent(pedalboard_pins['before_pedalboard'], toggle)
