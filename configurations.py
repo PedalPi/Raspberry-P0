@@ -41,7 +41,7 @@ class Configurations(object):
             'pedalboard': {
                 'next_pedalboard': int,
                 'before_pedalboard': int,
-                'footswitch_toggle': bool,
+                'momentary_footswitch': bool,
             },
 
             'test': {
@@ -73,7 +73,7 @@ class Configurations(object):
         )
 
         pedalboard_pins = config['pedalboard']
-        toggle = pedalboard_pins['footswitch_toggle']
+        toggle = pedalboard_pins['momentary_footswitch']
 
         self.next_pedalboard_button = PedalboardComponent(pedalboard_pins['next_pedalboard'], toggle)
         self.before_pedalboard_button = PedalboardComponent(pedalboard_pins['before_pedalboard'], toggle)
