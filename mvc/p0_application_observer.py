@@ -18,16 +18,16 @@ class P0ApplicationObserver(ApplicationObserver):
         if token != self.token:
             self.controller.on_current_pedalboard_changed(pedalboard)
 
-    def on_bank_updated(self, bank, update_type, token=None, **kwargs):
+    def on_bank_updated(self, bank, update_type, index, origin, token=None, **kwargs):
         pass
 
-    def on_pedalboard_updated(self, pedalboard, update_type, token=None, **kwargs):
+    def on_pedalboard_updated(self, pedalboard, update_type, index, origin, token=None, **kwargs):
         if token != self.token \
         and update_type == UpdateType.UPDATED \
         and self.actions.current_pedalboard == pedalboard:
             self.controller.on_current_pedalboard_changed(pedalboard)
 
-    def on_effect_updated(self, effect, update_type, token=None, **kwargs):
+    def on_effect_updated(self, effect, update_type, index, origin, token=None, **kwargs):
         pass
 
     def on_effect_status_toggled(self, effect, token=None, **kwargs):
@@ -36,5 +36,5 @@ class P0ApplicationObserver(ApplicationObserver):
     def on_param_value_changed(self, param, token=None, **kwargs):
         pass
 
-    def on_connection_updated(self, connection, update_type, token=None, **kwargs):
+    def on_connection_updated(self, connection, update_type, pedalboard, token=None, **kwargs):
         pass

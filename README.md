@@ -111,7 +111,7 @@ common_anode = True
 next_pedalboard = 14
 before_pedalboard = 15
 
-footswitch_toggle = True
+momentary_footswitch = True
 
 [test]
 test = False
