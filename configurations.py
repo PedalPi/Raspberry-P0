@@ -2,8 +2,8 @@ from gpiozero.pins.mock import MockPin
 
 from raspberry_p0.component.seven_segments_display import SevenSegmentsDisplay
 from raspberry_p0.component.pedalboard_component import PedalboardComponent
+from raspberry_p0.configurations_parser import ConfigurationsParser
 
-import json
 from configparser import ConfigParser
 
 
@@ -14,70 +14,64 @@ class Configurations(object):
     """
 
     def __init__(self, configuration_file):
+        config = self._load_configurations(configuration_file)
+
         self.display = None
         self.next_pedalboard_button = None
         self.before_pedalboard_button = None
 
-        config = self._parse_configuration(configuration_file)
-        config = self._prepare_pins(config)
         self.configure(config)
 
-    def _parse_configuration(self, configuration_file):
+    def _load_configurations(self, configuration_file):
+        schema = {
+            'display': {
+                'pin_a': int,
+                'pin_b': int,
+                'pin_c': int,
+                'pin_d': int,
+                'pin_e': int,
+                'pin_f': int,
+                'pin_g': int,
+                'pin_dp': int,
+
+                'common_pins': list([int]),
+                'common_anode': bool,
+            },
+
+            'pedalboard': {
+                'next_pedalboard': int,
+                'before_pedalboard': int,
+                'footswitch_toggle': bool,
+            },
+
+            'test': {
+                'test': bool
+            }
+        }
+
         config_parser = ConfigParser()
         config_parser.read(configuration_file)
 
-        data = config_parser['DEFAULT']
-
-        keys = data.keys()
-
-        config = dict()
-        config['test'] = config_parser['test']['test'] == 'True'
-
-        config['display'] = dict()
-        pin_keys = filter(lambda key: key.startswith('pin_'), keys)
-        for key in pin_keys:
-            config['display'][key] = int(data[key])
-
-        config['display_common'] = json.loads(data['common_pins'])
-
-        config['next_pedalboard'] = int(data['next_pedalboard'])
-        config['before_pedalboard'] = int(data['before_pedalboard'])
-
-        return config
-
-    def _prepare_pins(self, config):
-        test = config['test']
-
-        if not test:
-            return config
-
-        for key, value in config['display'].items():
-            config['display'][key] = MockPin(value)
-
-        new_common = []
-        for common in config['display_common']:
-            new_common.append(MockPin(common))
-
-        config['display_common'] = new_common
-
-        config['next_pedalboard'] = MockPin(config['next_pedalboard'])
-        config['before_pedalboard'] = MockPin(config['before_pedalboard'])
-
-        return config
+        return ConfigurationsParser(schema).parse(config_parser)
 
     def configure(self, config):
         display_pins = config['display']
+
         self.display = SevenSegmentsDisplay(
-            a=display_pins['pin_a'],
-            b=display_pins['pin_b'],
-            c=display_pins['pin_c'],
-            d=display_pins['pin_d'],
-            e=display_pins['pin_e'],
-            f=display_pins['pin_f'],
-            g=display_pins['pin_g'],
-            dp=display_pins['pin_dp'],
-            common=config['display_common'],
+            a=display_pins.get('pin_a', 13),
+            b=display_pins.get('pin_b', 6),
+            c=display_pins.get('pin_c', 16),
+            d=display_pins.get('pin_d', 20),
+            e=display_pins.get('pin_e', 21),
+            f=display_pins.get('pin_f', 19),
+            g=display_pins.get('pin_g', 26),
+            dp=display_pins.get('pin_dp', 0),
+
+            common=config.get('common_pins', [5, 1]),
+            common_anode=config.get('common_anode', True),
         )
 
-        self.next_pedalboard_button = PedalboardComponent(config['next_pedalboard'])
-        self.before_pedalboard_button = PedalboardComponent(config['before_pedalboard'])
+        pedalboard_pins = config['pedalboard']
+        toggle = pedalboard_pins.get('footswitch_toggle', True)
+        self.next_pedalboard_button = PedalboardComponent(pedalboard_pins.get('next_pedalboard', 14), toggle)
+        self.before_pedalboard_button = PedalboardComponent(pedalboard_pins.get('before_pedalboard', 15), toggle)

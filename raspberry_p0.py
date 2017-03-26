@@ -23,11 +23,11 @@ class RaspberryP0(Component):
         self.app = application
         self.config = Configurations(configuration_file)
 
-        self.components = self.init_components(self.config)
-        self.observer = P0ApplicationObserver()
-        self.register_observer(self.observer)
-
         self.actions = ActionsFacade(application)
+
+        self.components = self.init_components(self.config)
+        self.observer = P0ApplicationObserver(self.actions)
+        self.register_observer(self.observer)
 
         self.controllers = self.init_controllers(self.components, self.actions, self.observer)
 

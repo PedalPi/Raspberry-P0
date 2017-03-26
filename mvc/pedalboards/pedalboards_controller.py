@@ -12,7 +12,7 @@ class PedalboardsController(Controller):
         self.current_pedalboard = current_pedalboard
         self.view.show_pedalboard(current_pedalboard)
 
-    def on_current_pedalboard_change(self, pedalboard, token=None):
+    def on_current_pedalboard_changed(self, pedalboard):
         self.init(pedalboard)
 
     def to_next_pedalboard(self):
