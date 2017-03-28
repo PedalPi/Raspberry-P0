@@ -13,3 +13,6 @@ class SevenSegmentsDisplay(object):
             self.board.value = '--'
         else:
             self.board.value = pedalboard.index
+
+    def close(self):
+        self.board.off()

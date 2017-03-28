@@ -1,10 +1,17 @@
 from setuptools import setup
 setup(
-    name='PedalPi - Physical',
+    name='PedalPi - Raspberry-P0',
     packages=[
-        'physical',
-        'physical/sevensegments'
+        'raspberry_p0/',
+        'raspberry_p0/action',
+        'raspberry_p0/action',
+        'raspberry_p0/component',
+        'raspberry_p0/mvc',
+        'raspberry_p0/mvc/pedalboards',
     ],
+    package_data={
+        'raspberry_p0/': ['*.ini']
+    },
     test_suite='test',
     install_requires=[
         'gpiozero',

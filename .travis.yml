@@ -8,12 +8,7 @@ python:
 
 sudo: required
 
-install:
-  - pip3 install coveralls
-
 script:
-  - git clone https://github.com/PedalPi/RaspberryP0 raspberry_p0 --depth=1
-  - cd raspberry_p0
   - python setup.py develop
+  - cd test
   - python test.py
-
