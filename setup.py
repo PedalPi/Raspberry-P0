@@ -1,9 +1,11 @@
 from setuptools import setup
 setup(
-    name='PedalPi - Physical',
+    name='PedalPi - Raspberry-P0',
     packages=[
-        'physical',
-        'physical/sevensegments'
+        'action',
+        'component',
+        'mvc',
+        'mvc/pedalboards',
     ],
     test_suite='test',
     install_requires=[
