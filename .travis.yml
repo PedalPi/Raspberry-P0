@@ -9,9 +9,6 @@ python:
 sudo: required
 
 script:
-  - ls
-  - git clone -b build https://github.com/PedalPi/Raspberry-P0.git --depth=1
-  - cd Raspberry-P0
   - python setup.py develop
   - cd test
   - python test.py
