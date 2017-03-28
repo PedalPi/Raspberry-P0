@@ -1,6 +1,8 @@
 # Raspberry P0
 
-[![Code Health](https://landscape.io/github/PedalPi/Raspberry-P0/master/landscape.svg?style=flat-square)](https://landscape.io/github/PedalPi/Raspberry-P0/master) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/f3e1af57f11d4d9e8be097153ce68195)](https://www.codacy.com/app/mateus-moura/Raspberry-P0?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=PedalPi/Raspberry-P0&amp;utm_campaign=Badge_Grade)
+[![Build Status](https://travis-ci.org/PedalPi/Raspberry-P0.svg?branch=master)](https://travis-ci.org/PedalPi/Raspberry-P0)
+[![Code Health](https://landscape.io/github/PedalPi/Raspberry-P0/master/landscape.svg?style=flat-square)](https://landscape.io/github/PedalPi/Raspberry-P0/master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f3e1af57f11d4d9e8be097153ce68195)](https://www.codacy.com/app/mateus-moura/Raspberry-P0?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=PedalPi/Raspberry-P0&amp;utm_campaign=Badge_Grade)
 
 A simple physical controller for change and view the current pedalboard with 2 buttons and 7 two segments displays
 
