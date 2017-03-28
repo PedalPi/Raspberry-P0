@@ -16,3 +16,4 @@ script:
   - cd raspberry_p0
   - python setup.py develop
   - python test.py
+
