@@ -1,3 +1,5 @@
+import os
+
 from gpiozero.pins.mock import MockPin
 
 from raspberry_p0.component.seven_segments_display import SevenSegmentsDisplay
@@ -54,7 +56,7 @@ class Configurations(object):
         }
 
         config_parser = ConfigParser()
-        config_parser.read('raspberry_p0/config.ini')
+        config_parser.read(os.path.dirname(__file__) + '/config.ini')
         config_parser.read(configuration_file)
 
         return ConfigurationsParser(schema).parse(config_parser)

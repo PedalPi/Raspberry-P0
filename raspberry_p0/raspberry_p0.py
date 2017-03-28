@@ -51,3 +51,6 @@ class RaspberryP0(Component):
         controllers[PedalboardsController] = PedalboardsController(controllers, components, actions, observer)
 
         return controllers
+
+    def close(self):
+        self.config.display.close()
