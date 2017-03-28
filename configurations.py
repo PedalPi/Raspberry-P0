@@ -20,7 +20,11 @@ class Configurations(object):
         self.next_pedalboard_button = None
         self.before_pedalboard_button = None
 
-        self.configure(config)
+        test = config['test']['test']
+        if test:
+            self.configure_test(config)
+        else:
+            self.configure(config)
 
     def _load_configurations(self, configuration_file):
         schema = {
@@ -77,3 +81,27 @@ class Configurations(object):
 
         self.next_pedalboard_button = PedalboardComponent(pedalboard_pins['next_pedalboard'], toggle)
         self.before_pedalboard_button = PedalboardComponent(pedalboard_pins['before_pedalboard'], toggle)
+
+    def configure_test(self, config):
+        display_pins = config['display']
+
+        common_pins = [MockPin(pin) for pin in display_pins['common_pins']]
+        self.display = SevenSegmentsDisplay(
+            a=MockPin(display_pins['pin_a']),
+            b=MockPin(display_pins['pin_b']),
+            c=MockPin(display_pins['pin_c']),
+            d=MockPin(display_pins['pin_d']),
+            e=MockPin(display_pins['pin_e']),
+            f=MockPin(display_pins['pin_f']),
+            g=MockPin(display_pins['pin_g']),
+            dp=MockPin(display_pins['pin_dp']),
+
+            common=common_pins,
+            common_anode=display_pins['common_anode'],
+        )
+
+        pedalboard_pins = config['pedalboard']
+        toggle = pedalboard_pins['momentary_footswitch']
+
+        self.next_pedalboard_button = PedalboardComponent(MockPin(pedalboard_pins['next_pedalboard']), toggle)
+        self.before_pedalboard_button = PedalboardComponent(MockPin(pedalboard_pins['before_pedalboard']), toggle)

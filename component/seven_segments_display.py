@@ -1,4 +1,4 @@
-from physical.component.sevensegments.seven_segments import SevenSegmentsBoard
+from physical.sevensegments.seven_segments import SevenSegmentsBoard
 
 
 class SevenSegmentsDisplay(object):

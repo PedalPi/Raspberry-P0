@@ -1,4 +1,4 @@
-from physical.mvc.controller import Controller
+from physical.navigation.controller import Controller
 from raspberry_p0.mvc.pedalboards.pedalboards_view import PedalboardsView
 
 

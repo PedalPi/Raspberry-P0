@@ -1,4 +1,4 @@
-from physical.mvc.view import View
+from physical.navigation.view import View
 from raspberry_p0.component.components import Components
 
 

@@ -1,0 +1,18 @@
+language: python
+
+python:
+  - "3.4"
+  - "3.5"
+  - "3.6-dev"
+  - "nightly"
+
+sudo: required
+
+install:
+  - pip3 install coveralls
+
+script:
+  - git clone https://github.com/PedalPi/RaspberryP0 raspberry_p0 --depth=1
+  - cd raspberry_p0
+  - python setup.py develop
+  - python test.py
