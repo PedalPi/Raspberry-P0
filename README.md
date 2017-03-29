@@ -29,12 +29,48 @@ A simple physical controller for change and view the current pedalboard with 2 b
 
 ## Installation
 
-**FIXME**
-View the [Application documentation](http://pedalpi-application.readthedocs.io/en/latest/?badge=latest#using) for more details how to add others components.
-
 ### Dependencies
 
-**Pedal Pi - Raspberry P0** requires `gpiozero >= 1.2.0` for access GPIO and [Physical project](http://github.com/PedalPi/Physical) for SevenSegments lib ([gpiozero not contains yet](https://github.com/RPi-Distro/python-gpiozero/issues/493)). 
+**Pedal Pi - Raspberry P0** requires
+
+ * [Pedal Pi - Application](https://github.com/PedalPi/Application/master);
+ * `gpiozero >= 1.2.0` for access GPIO pins;
+ * [Pedal Pi - Physical](http://github.com/PedalPi/Physical) for SevenSegments lib ([gpiozero not contains yet](https://github.com/RPi-Distro/python-gpiozero/issues/493)). 
+
+### Prepare environment
+
+Create a `MyPedalboardEnviroment` environment
+
+```bash
+virtualenv -p python3 MyPedalboardEnviroment
+source MyPedalboardEnviroment/bin/activate
+```
+
+Create the file `requirements.txt` and inserts the dependencies:
+
+```
+https://github.com/PedalPi/PluginsManager/tarball/master#egg=PedalPi-PluginsManager
+https://github.com/PedalPi/Application/tarball/master#egg=PedalPi-Application
+https://github.com/PedalPi/Physical/tarball/master#egg=PedalPi-Physical
+https://github.com/PedalPi/Raspberry-P0/tarball/master#egg=PedalPi-Raspberry-P0
+```
+
+Install the dependencies in `MyPedalboardEnviroment` 
+
+```bash
+pip install -r requirements.txt
+```
+
+### Create the program.py
+
+View [program.py](#programpy).
+
+### Start
+
+```bash
+source MyPedalboardEnviroment/bin/activate
+python program.py
+```
 
 ## `program.py`
 
@@ -183,6 +219,10 @@ The two types of buttons the system supports are temporary buttons and two-state
 | Config identifier | Default value  | Type | Function                                |
 | ----------------- | -------------- | ---- | --------------------------------------- | 
 | `test`            | `False`        | bool | Disable GPIOZero for development tests  |
+
+## Common questions
+
+See [FAQs on the wiki](https://github.com/PedalPi/Raspberry-P0/wiki).
 
 ## Examples
 
