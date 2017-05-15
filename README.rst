@@ -21,6 +21,21 @@ with 2 buttons and 7 two segments displays
     ║ .........=......... | ..=.............=.. ║
     ╚═══════════════════════════════════════════╝
 
+
+**Documentation:**
+   https://github.com/PedalPi/Raspberry-P0#raspberry-p0
+
+**Code:**
+   https://github.com/PedalPi/Raspberry-P0
+
+**Python Package Index:**
+   https://pypi.org/project/PedalPi-Raspberry-P0
+
+**License:**
+   `Apache License 2.0`_
+
+.. _Apache License 2.0: https://github.com/PedalPi/Raspberry-P0/blob/master/LICENSE
+
 Elements list:
 --------------
 
@@ -30,80 +45,49 @@ Elements list:
 Installation
 ------------
 
-Dependencies
-~~~~~~~~~~~~
+PedalPi components enable the extension of `Pedal Pi - Application`_.
+Through them, opening services are offered. A list of components can be found in the `Components repository`_.
 
-**Pedal Pi - Raspberry P0** requires
+.. _Pedal Pi - Application: http://pedalpi-application.readthedocs.io/en/latest/
+.. _Components repository: https://github.com/PedalPi/Components#list
 
--  `Pedal Pi -
-   Application <https://github.com/PedalPi/Application/master>`__;
--  ``gpiozero >= 1.2.0`` for access GPIO pins;
--  `Pedal Pi - Physical <http://github.com/PedalPi/Physical>`__ for
-   SevenSegments lib (`gpiozero not contains
-   yet <https://github.com/RPi-Distro/python-gpiozero/issues/493>`__).
+Use the pip to install the *PedalPi-Raspberry-P0*
 
-Prepare environment
-~~~~~~~~~~~~~~~~~~~
+.. code-block:: bash
 
-Create a ``MyPedalboardEnviroment`` environment
+   pip3 install PedalPi-Raspberry-P0
 
-.. code:: bash
-
-    virtualenv -p python3 MyPedalboardEnviroment
-    source MyPedalboardEnviroment/bin/activate
-
-Create the file ``requirements.txt`` and inserts the dependencies:
-
-::
-
-    https://github.com/PedalPi/PluginsManager/tarball/master#egg=PedalPi-PluginsManager
-    https://github.com/PedalPi/Application/tarball/master#egg=PedalPi-Application
-    https://github.com/PedalPi/Physical/tarball/master#egg=PedalPi-Physical
-    https://github.com/PedalPi/Raspberry-P0/tarball/master#egg=PedalPi-Raspberry-P0
-
-Install the dependencies in ``MyPedalboardEnviroment``
-
-.. code:: bash
-
-    pip install -r requirements.txt
-
-Create the program.py
-~~~~~~~~~~~~~~~~~~~~~
-
-View `program.py <#programpy>`__.
-
-Start
-~~~~~
-
-.. code:: bash
-
-    source MyPedalboardEnviroment/bin/activate
-    python program.py
-
-``program.py``
---------------
+Create the ``program.py``
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following example demonstrates a basic setup for the Pedal Pi -
 Raspberry P0. If you want to add other components, check the `component
 list <https://github.com/PedalPi/Components>`__.
 
-.. code:: python
+.. code-block:: python
 
     import sys
     from signal import pause
 
-    sys.path.append('physical')
-    sys.path.append('raspberry_p0')
-
     from application.application import Application
     from raspberry_p0.raspberry_p0 import RaspberryP0
 
-    application = Application(data_patch="data/", address='localhost', test=True)
+    application = Application(data_patch="data/", address='localhost')
     application.register(RaspberryP0(application))
 
     application.start()
 
-    pause()
+    try:
+        pause()
+    except KeyboardInterrupt:
+        application.stop()
+
+Start
+~~~~~
+
+.. code-block:: bash
+
+    python3 program.py
 
 Schematic
 ---------
@@ -202,7 +186,7 @@ The **config\_file** has the following structure:
 For P0 to loads the new configuration, references the file in
 ``RaspberryP0`` constructor.
 
-.. code:: python
+.. code-block:: python
 
     # The config file has named as 'path/my_awersome_config.ini'.
     application.register(RaspberryP0(application, configuration_file='my_awersome_config.ini'))
