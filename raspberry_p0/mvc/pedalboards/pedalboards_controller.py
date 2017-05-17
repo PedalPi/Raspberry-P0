@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from physical.navigation.controller import Controller
+from raspberry_p0.mvc.controller import Controller
 from raspberry_p0.mvc.pedalboards.pedalboards_view import PedalboardsView
 
 

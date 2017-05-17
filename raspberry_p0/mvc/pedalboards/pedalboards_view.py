@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from physical.navigation.view import View
+from raspberry_p0.mvc.view import View
 from raspberry_p0.component.components import Components
 
 

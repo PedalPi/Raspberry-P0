@@ -302,8 +302,6 @@ Examples
 .. figure:: docs/Example.jpg
    :alt: P0 in a protoboard
 
-   P0 in a protoboard
-
 .. |Build Status| image:: https://travis-ci.org/PedalPi/Raspberry-P0.svg?branch=master
    :target: https://travis-ci.org/PedalPi/Raspberry-P0
 .. |Code Health| image:: https://landscape.io/github/PedalPi/Raspberry-P0/master/landscape.svg?style=flat-square
