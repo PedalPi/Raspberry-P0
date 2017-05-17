@@ -52,7 +52,7 @@ setup(
     install_requires=[
         'gpiozero',
         'PedalPi-Application',
-        'PedalPi-Physical'
+        'PedalPi-Raspberry-Physical'
     ],
 
     test_suite='test',
