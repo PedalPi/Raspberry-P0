@@ -72,7 +72,7 @@ list <https://github.com/PedalPi/Components>`__.
     from application.application import Application
     from raspberry_p0.raspberry_p0 import RaspberryP0
 
-    application = Application(data_patch="data/", address='localhost')
+    application = Application(path_data="data/", address='localhost')
     application.register(RaspberryP0(application))
 
     application.start()

@@ -22,4 +22,4 @@ p0 = RaspberryP0(application, configuration_file='config_test.ini')
 application.register(p0)
 application.start()
 
-#application.stop()
+application.stop()

@@ -12,12 +12,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from enum import Enum
+from physical.sevensegments.seven_segments import SevenSegmentsBoard
 
 
-class Components(Enum):
+class SevenSegmentsDisplay(object):
 
-    DISPLAY = "Display"
+    def __init__(self, a, b, c, d, e, f, g, dp, common, common_anode):
+        self.board = SevenSegmentsBoard(a=a, b=b, c=c, d=d, e=e, f=f, g=g)
+        for common_pin in common:
+            self.board.add_display(common=common_pin, anode=common_anode)
 
-    NEXT_PEDALBOARD = "Next pedalboard button"
-    BEFORE_PEDALBOARD = "Before pedalboard button"
+    def show_pedalboard(self, pedalboard):
+        if pedalboard is None:
+            self.board.value = '--'
+        else:
+            self.board.value = pedalboard.index
+
+    def close(self):
+        self.board.off()
