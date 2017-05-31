@@ -10,6 +10,7 @@ python:
 sudo: required
 
 install:
+  - sudo apt-get install -y portaudio19-dev python-all-dev --no-install-recommends
   - sudo apt-get install -y lilv-utils calf-plugins guitarix --no-install-recommends
 
 script:
