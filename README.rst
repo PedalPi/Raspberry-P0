@@ -1,7 +1,7 @@
 |Raspberry P0 symbol| Raspberry P0
 ==================================
 
-.. |Raspberry P0 symbol| image:: docs/seven-segments-example.jpg
+.. |Raspberry P0 symbol| image:: docs/P0.gif
    :alt: Raspberry P0 symbol: Tho footswitches and a seven segments display showing the letters 'P0'
    :height: 50px
 
