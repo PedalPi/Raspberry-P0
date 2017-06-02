@@ -43,14 +43,18 @@ class RaspberryP0(Component):
     def to_next_pedalboard(self):
         with self._observer:
             self._current_controller.to_next_pedalboard()
+        self.show_current_pedalboard()
 
     def to_before_pedalboard(self):
         with self._observer:
             self._current_controller.to_before_pedalboard()
+        self.show_current_pedalboard()
 
     def show_pedalboard(self, pedalboard):
         self._elements.display.show_pedalboard(pedalboard)
 
+    def show_current_pedalboard(self):
+        self._elements.display.show_pedalboard(self._current_controller.pedalboard)
 
 class ObserverRaspberryP0(ApplicationObserver):
 
