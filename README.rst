@@ -269,22 +269,26 @@ on how you can identify if a display is cathode or anode.
 
 Simple push buttons were used to change the current pedalboard. For use
 with foot, is recommended use footswitches (like the temporary
-footswitch in image to the right). The two types of buttons the system
+footswitch in image below). The two types of buttons the system
 supports are temporary buttons and two-state buttons (on-off).
 
-+-----------------------+-------------+--------+-------------------------------------+
-| Config identifier     | Default     | Type   | Function                            |
-|                       | value       |        |                                     |
-+=======================+=============+========+=====================================+
-| next\_pedalboard      | ``14``      | intege | Set the current pedalboard for the  |
-|                       |             | r      | next                                |
-+-----------------------+-------------+--------+-------------------------------------+
-| before\_pedalboard    | ``15``      | intege | Set the current pedalboard for the  |
-|                       |             | r      | before                              |
-+-----------------------+-------------+--------+-------------------------------------+
-| momentary\_footswitch | ``False``   | bool   | ``True`` if buttons are momentary.  |
-|                       |             |        | ``False`` if buttons are two state  |
-+-----------------------+-------------+--------+-------------------------------------+
+.. image:: docs/momentary-footswitch.jpg
+   :align: right
+   :alt: Temporary footswitch
+
++-----------------------+-------------+---------+-------------------------------------+
+| Config identifier     | Default     | Type    | Function                            |
+|                       | value       |         |                                     |
++=======================+=============+=========+=====================================+
+| next\_pedalboard      | ``14``      | integer | Set the current pedalboard for the  |
+|                       |             |         | next                                |
++-----------------------+-------------+---------+-------------------------------------+
+| before\_pedalboard    | ``15``      | integer | Set the current pedalboard for the  |
+|                       |             |         | before                              |
++-----------------------+-------------+---------+-------------------------------------+
+| momentary\_footswitch | ``False``   | bool    | ``True`` if buttons are momentary.  |
+|                       |             |         | ``False`` if buttons are two state  |
++-----------------------+-------------+---------+-------------------------------------+
 
 ``[test]`` Test
 ~~~~~~~~~~~~~~~
