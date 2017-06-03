@@ -12,14 +12,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from application.application import Application
-from raspberry_p0.raspberry_p0 import RaspberryP0
+from physical.sevensegments.seven_segments import SevenSegmentsBoard
 
-application = Application(path_data="data/", address='localhost', test=True)
 
-p0 = RaspberryP0(application, configuration_file='config_test.ini')
+class SevenSegmentsDisplay(object):
 
-application.register(p0)
-application.start()
+    def __init__(self, a, b, c, d, e, f, g, dp, common, common_anode):
+        self.board = SevenSegmentsBoard(a=a, b=b, c=c, d=d, e=e, f=f, g=g)
+        for common_pin in common:
+            self.board.add_display(common=common_pin, anode=common_anode)
 
-application.stop()
+    def show_pedalboard(self, pedalboard):
+        if pedalboard is None:
+            self.board.value = '--'
+        else:
+            self.board.value = pedalboard.index
+
+    def close(self):
+        self.board.off()

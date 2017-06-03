@@ -11,3 +11,22 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+from gpiozero import Button
+
+
+class Footswitch(object):
+
+    def __init__(self, pin, toggle=True):
+        self.button = Button(pin, pull_up=True)
+        self.toggle = toggle
+
+    @property
+    def action(self):
+        return self.button.when_pressed
+
+    @action.setter
+    def action(self, data):
+        self.button.when_pressed = data
+        if self.toggle:
+            self.button.when_released = data
