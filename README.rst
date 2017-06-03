@@ -96,10 +96,12 @@ Start
 Schematic
 ---------
 
+The following image shows the connections between components and Raspberry Pi
+to the default configuration. If you wish to change the pins, refer to
+`Configuration File <#configuration-file>`__.
+
 .. figure:: docs/schematic.jpg
    :alt: P0 in the Fritzing
-
-   P0 in the Fritzing
 
 Pins
 ~~~~
@@ -129,9 +131,9 @@ The used pins are:
 +-----------------------+------------+-------------+---------------------------------+
 | pin\_g                | ``26``     | integer     | Seven segments - Pin G          |
 +-----------------------+------------+-------------+---------------------------------+
-| pin\_h                | ``0``      | integer     | Seven segments - Dot point pin  |
+| pin\_dp               | ``0``      | integer     | Seven segments - Dot point pin  |
 +-----------------------+------------+-------------+---------------------------------+
-| common\_pins          | ``[5, 1]`` | integer     | Seven segments - Dot point pin  |
+| common\_pins          | ``[5, 1]`` | integer     | Seven segments - Common pins    |
 |                       |            | list        |                                 |
 +-----------------------+------------+-------------+---------------------------------+
 | common\_anode         | ``True``   | bool        | ``True`` if the displays are    |
@@ -148,7 +150,9 @@ The used pins are:
 |                       |            |             | are two state                   |
 +-----------------------+------------+-------------+---------------------------------+
 
-¹ `**BCM** pin numeration <https://pinout.xyz/>`__
+¹ `BCM pin numeration <https://pinout.xyz/>`__
+
+.. _configuration-file:
 
 Configuration file
 ------------------
@@ -159,7 +163,7 @@ configurations. An element not informed will be treated with your
 default value.
 
 A Raspberry Pi pinout schematic can be seen in
-`pinout.xyz <https://pinout.xyz/>`__
+`pinout.xyz <https://pinout.xyz/>`__.
 
 The **config\_file** has the following structure:
 
