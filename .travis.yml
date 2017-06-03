@@ -3,12 +3,17 @@ language: python
 python:
   - "3.4"
   - "3.5"
-  - "3.6-dev"
+  - "3.6"
+  - "3.7-dev"
   - "nightly"
 
 sudo: required
 
+install:
+  - sudo apt-get install -y portaudio19-dev python-all-dev --no-install-recommends
+  - sudo apt-get install -y lilv-utils calf-plugins guitarix --no-install-recommends
+
 script:
-  - python setup.py develop
+  - pip install .
   - cd test
   - python test.py

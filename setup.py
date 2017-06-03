@@ -40,26 +40,23 @@ setup(
 
     packages=[
         'raspberry_p0/',
-        'raspberry_p0/action',
-        'raspberry_p0/action',
-        'raspberry_p0/component',
-        'raspberry_p0/mvc',
-        'raspberry_p0/mvc/pedalboards',
+        'raspberry_p0/configurations',
+        'raspberry_p0/physical',
     ],
     package_data={
         'raspberry_p0/': ['*.ini']
     },
     install_requires=[
         'gpiozero',
-        'PedalPi-Application',
-        'PedalPi-Physical'
+        'PedalPi-Application>=0.3.0',
+        'PedalPi-Raspberry-Physical'
     ],
 
     test_suite='test',
     test_requires=[
         'gpiozero',
-        'PedalPi-Application',
-        'PedalPi-Raspberry-Physical'
+        'PedalPi-Application>=0.3.0',
+        'PedalPi-Raspberry-Physical>=0.2.0'
     ],
 
     classifiers=[
@@ -67,7 +64,9 @@ setup(
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Apache Software License',
         'Topic :: Multimedia :: Sound/Audio',
-        'Programming Language :: Python :: 3'
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6'
     ],
     keywords='pedal-pi mod-host lv2 audio plugins-manager raspberry',
 

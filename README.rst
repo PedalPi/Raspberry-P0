@@ -1,5 +1,9 @@
-Raspberry P0
-============
+|Raspberry P0 symbol| Raspberry P0
+==================================
+
+.. |Raspberry P0 symbol| image:: docs/P0.gif
+   :alt: Raspberry P0 symbol: Tho footswitches and a seven segments display showing the letters 'P0'
+   :height: 50px
 
 |Build Status| |Code Health| |Codacy Badge|
 
@@ -72,7 +76,7 @@ list <https://github.com/PedalPi/Components>`__.
     from application.application import Application
     from raspberry_p0.raspberry_p0 import RaspberryP0
 
-    application = Application(data_patch="data/", address='localhost')
+    application = Application(path_data="data/", address='localhost')
     application.register(RaspberryP0(application))
 
     application.start()
@@ -92,10 +96,12 @@ Start
 Schematic
 ---------
 
+The following image shows the connections between components and Raspberry Pi
+to the default configuration. If you wish to change the pins, refer to
+`Configuration File <#configuration-file>`__.
+
 .. figure:: docs/schematic.jpg
    :alt: P0 in the Fritzing
-
-   P0 in the Fritzing
 
 Pins
 ~~~~
@@ -125,9 +131,9 @@ The used pins are:
 +-----------------------+------------+-------------+---------------------------------+
 | pin\_g                | ``26``     | integer     | Seven segments - Pin G          |
 +-----------------------+------------+-------------+---------------------------------+
-| pin\_h                | ``0``      | integer     | Seven segments - Dot point pin  |
+| pin\_dp               | ``0``      | integer     | Seven segments - Dot point pin  |
 +-----------------------+------------+-------------+---------------------------------+
-| common\_pins          | ``[5, 1]`` | integer     | Seven segments - Dot point pin  |
+| common\_pins          | ``[5, 1]`` | integer     | Seven segments - Common pins    |
 |                       |            | list        |                                 |
 +-----------------------+------------+-------------+---------------------------------+
 | common\_anode         | ``True``   | bool        | ``True`` if the displays are    |
@@ -144,7 +150,9 @@ The used pins are:
 |                       |            |             | are two state                   |
 +-----------------------+------------+-------------+---------------------------------+
 
-¹ `**BCM** pin numeration <https://pinout.xyz/>`__
+¹ `BCM pin numeration <https://pinout.xyz/>`__
+
+.. _configuration-file:
 
 Configuration file
 ------------------
@@ -155,7 +163,7 @@ configurations. An element not informed will be treated with your
 default value.
 
 A Raspberry Pi pinout schematic can be seen in
-`pinout.xyz <https://pinout.xyz/>`__
+`pinout.xyz <https://pinout.xyz/>`__.
 
 The **config\_file** has the following structure:
 
@@ -265,22 +273,26 @@ on how you can identify if a display is cathode or anode.
 
 Simple push buttons were used to change the current pedalboard. For use
 with foot, is recommended use footswitches (like the temporary
-footswitch in image to the right). The two types of buttons the system
+footswitch in image below). The two types of buttons the system
 supports are temporary buttons and two-state buttons (on-off).
 
-+-----------------------+-------------+--------+-------------------------------------+
-| Config identifier     | Default     | Type   | Function                            |
-|                       | value       |        |                                     |
-+=======================+=============+========+=====================================+
-| next\_pedalboard      | ``14``      | intege | Set the current pedalboard for the  |
-|                       |             | r      | next                                |
-+-----------------------+-------------+--------+-------------------------------------+
-| before\_pedalboard    | ``15``      | intege | Set the current pedalboard for the  |
-|                       |             | r      | before                              |
-+-----------------------+-------------+--------+-------------------------------------+
-| momentary\_footswitch | ``False``   | bool   | ``True`` if buttons are momentary.  |
-|                       |             |        | ``False`` if buttons are two state  |
-+-----------------------+-------------+--------+-------------------------------------+
+.. image:: docs/momentary-footswitch.jpg
+   :align: right
+   :alt: Temporary footswitch
+
++-----------------------+-------------+---------+-------------------------------------+
+| Config identifier     | Default     | Type    | Function                            |
+|                       | value       |         |                                     |
++=======================+=============+=========+=====================================+
+| next\_pedalboard      | ``14``      | integer | Set the current pedalboard for the  |
+|                       |             |         | next                                |
++-----------------------+-------------+---------+-------------------------------------+
+| before\_pedalboard    | ``15``      | integer | Set the current pedalboard for the  |
+|                       |             |         | before                              |
++-----------------------+-------------+---------+-------------------------------------+
+| momentary\_footswitch | ``False``   | bool    | ``True`` if buttons are momentary.  |
+|                       |             |         | ``False`` if buttons are two state  |
++-----------------------+-------------+---------+-------------------------------------+
 
 ``[test]`` Test
 ~~~~~~~~~~~~~~~
