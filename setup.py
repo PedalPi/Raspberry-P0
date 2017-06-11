@@ -24,7 +24,7 @@ def readme():
 
 setup(
     name='PedalPi-Raspberry-P0',
-    version='0.2.0',
+    version='0.2.1',
 
     description='A simple physical controller for change and view the current pedalboard',
     long_description=readme(),
