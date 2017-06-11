@@ -39,12 +39,12 @@ setup(
     license="Apache Software License v2",
 
     packages=[
-        'raspberry_p0/',
+        'raspberry_p0',
         'raspberry_p0/configurations',
         'raspberry_p0/physical',
     ],
     package_data={
-        'raspberry_p0/': ['*.ini']
+        'raspberry_p0': ['*.ini']
     },
     install_requires=[
         'gpiozero',
