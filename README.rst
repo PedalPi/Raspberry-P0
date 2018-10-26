@@ -70,7 +70,6 @@ list <https://github.com/PedalPi/Components>`__.
 
 .. code-block:: python
 
-    import sys
     from signal import pause
 
     from application.application import Application

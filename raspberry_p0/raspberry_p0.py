@@ -27,7 +27,6 @@ class RaspberryP0(Component):
         self._observer = ObserverRaspberryP0(self)
         self._current_controller = self.controller(CurrentController)
         self._elements = ConfigurationsRaspberryP0(configuration_file).load()
-        print(self._elements)
 
     def init(self):
         self.register_observer(self._observer)
